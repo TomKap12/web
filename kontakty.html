@@ -295,12 +295,12 @@
             .navbar {
                 flex-direction: row; 
                 align-items: center;
-                justify-content: flex-start; /* Změna: zrušili jsme roztahování */
+                justify-content: flex-start;
                 width: 100%;
             }
             .hamburger {
                 display: flex;
-                margin-left: auto; /* Změna: tohle natlačí ikonku nekompromisně k pravému okraji */
+                margin-left: auto;
             }
             .nav-menu {
                 display: none;
@@ -325,6 +325,15 @@
             }
             .slide-content h2 {
                 font-size: 20pt;
+            }
+            
+            /* Úprava pro firemní údaje na mobilu (pod sebou a na střed) */
+            .company-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .company-details-grid .info-block {
+                text-align: center;
             }
         }
     </style>
