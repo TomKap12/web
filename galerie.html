@@ -43,16 +43,10 @@
             padding: 15px 20px;
         }
 
-        .logo-text {
-            color: #ffffff;
-            font-size: 24pt;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-decoration: none;
-        }
-        
-        .logo-text span {
-            color: #007bff;
+       .logo img {
+            height: 60px; /* Výška vašeho loga */
+            width: auto;
+            display: block;
         }
 
         .nav-menu {
@@ -153,6 +147,15 @@
             padding: 20px;
             font-size: 10pt;
         }
+        
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
 
         /* --- RESPONSIVITA (PRO MOBILY) --- */
         @media (max-width: 768px) {
@@ -178,15 +181,17 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <a href="index.html" class="logo-text">TKAP<span>.</span></a>
-            </div>
+            <a href="index.html">
+                 <img src="IMG/logo.svg" alt="TKAP Logo">
+             </a>
+        </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html#domu">Domů</a></li>
+                    <li><a href="index.html">Domů</a></li>
                     <li><a href="index.html#o-nas">O nás</a></li>
                     <li><a href="index.html#sluzby">Služby</a></li>
-                    <li><a href="galerie.html" class="active">Galerie</a></li>
-                    <li><a href="index.html#kontakty">Kontakty</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="kontakty.html">Kontakty</a></li>
                 </ul>
             </nav>
         </div>
@@ -233,8 +238,8 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 TKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:info@tkap.cz">info@tkap.cz</a></p>
+     <footer>
+        <p>&copy; 2026 KOVOKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:roman.kapera@seznam.cz">roman.kapera@seznam.cz</a></p>
     </footer>
 
 </body>

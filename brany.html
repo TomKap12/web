@@ -43,16 +43,10 @@
             padding: 15px 20px;
         }
 
-        .logo-text {
-            color: #ffffff;
-            font-size: 24pt;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-decoration: none;
-        }
-        
-        .logo-text span {
-            color: #007bff;
+        .logo img {
+            height: 60px; /* Výška vašeho loga */
+            width: auto;
+            display: block;
         }
 
         .nav-menu {
@@ -201,6 +195,78 @@
             color: #ffffff;
         }
 
+        /* --- KONTAKTNÍ FORMULÁŘ --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 20px auto 0 auto;
+            text-align: left; /* Texty popisků chceme zarovnat doleva */
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* Sloupce se rozdělí na polovinu */
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #1e2229;
+            font-size: 11pt;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 11pt;
+            font-family: inherit;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn-submit {
+            border: none;
+            cursor: pointer;
+            width: 100%; /* Tlačítko může být přes celou šířku formuláře */
+            max-width: 300px;
+        }
+
+
         /* --- RESPONSIVITA (PRO MOBILY) --- */
         @media (max-width: 768px) {
             .navbar {
@@ -217,6 +283,10 @@
             main {
                 padding-top: 150px;
             }
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -226,11 +296,13 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <a href="index.html" class="logo-text">TKAP<span>.</span></a>
-            </div>
+            <a href="index.html">
+                 <img src="IMG/logo.svg" alt="TKAP Logo">
+             </a>
+        </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html#domu">Domů</a></li>
+                    <li><a href="index.html">Domů</a></li>
                     <li><a href="index.html#o-nas">O nás</a></li>
                     <li><a href="index.html#sluzby">Služby</a></li>
                     <li><a href="galerie.html">Galerie</a></li>
@@ -273,14 +345,47 @@
         <div class="cta-section">
             <h3>Máte zájem o tuto službu nebo potřebujete poradit?</h3>
             <p style="margin-bottom: 20px; color: #555;">Neváhejte nás kontaktovat. Rádi s vámi probereme detaily vaší zakázky a připravíme nezávaznou cenovou kalkulaci.</p>
-            <a href="kontakty.html" class="btn-primary">Přejít na kontakty</a>
+            
+            <!-- Samotný formulář -->
+            <form action="odeslat.php" method="POST" class="contact-form">
+                
+                <!-- První řádek: Jméno a Telefon -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jmeno">Jméno a příjmení *</label>
+                        <input type="text" id="jmeno" name="jméno" placeholder="Marek Novák" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefon">Telefon</label>
+                        <input type="tel" id="telefon" name="telefon" placeholder="+420 123 456 789">
+                    </div>
+                </div>
+                
+                <!-- Druhý řádek: E-mail -->
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" placeholder="novak@seznam.cz" required>
+                </div>
+
+                <!-- Třetí řádek: Zpráva -->
+                <div class="form-group">
+                    <label for="zprava">Zpráva *</label>
+                    <textarea id="zprava" name="zpráva" placeholder="Dobrý den, poptávám..." required></textarea>
+                </div>
+
+                <!-- Odesílací tlačítko -->
+                <div class="form-submit">
+                    <button type="submit" class="btn-primary btn-submit">Odeslat poptávku</button>
+                </div>
+
+            </form>
         </div>
 
     </main>
 
     <!-- PATIČKA -->
     <footer>
-        <p>&copy; 2026 TKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:info@tkap.cz">info@tkap.cz</a></p>
+        <p>&copy; 2026 KOVOKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:roman.kapera@seznam.cz">roman.kapera@seznam.cz</a></p>
     </footer>
 
 </body>

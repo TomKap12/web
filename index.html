@@ -45,20 +45,11 @@
         }
 
         .logo img {
-            height: 50px; /* Výška vašeho loga */
+            height: 60px; /* Výška vašeho loga */
+            width: auto;
             display: block;
         }
 
-        /* Pokud nemáte logo jako obrázek, použije se tento styl pro text */
-        .logo-text {
-            color: #ffffff;
-            font-size: 24pt;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-        .logo-text span {
-            color: #007bff; /* Modrý akcent */
-        }
 
         .nav-menu {
             display: flex;
@@ -262,6 +253,15 @@
             padding: 20px;
             font-size: 10pt;
         }
+        
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
 
         /* --- RESPONSIVITA (PRO MOBILY) --- */
         @media (max-width: 768px) {
@@ -286,8 +286,10 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                <div class="logo-text">TKAP<span>.</span></div>
-            </div>
+            <a href="index.html">
+                 <img src="IMG/logo.svg" alt="TKAP Logo">
+             </a>
+        </div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#domu">Domů</a></li>
@@ -306,20 +308,20 @@
             <div class="slider">
                 <div class="slide slide1">
                     <div class="slide-content">
-                        <h2>Precizní strojírenská výroba</h2>
+                        <h2>Precizní výroba</h2>
                         <p>Kvalita a přesnost na prvním místě.</p>
                     </div>
                 </div>
                 <div class="slide slide2">
                     <div class="slide-content">
-                        <h2>Moderní CNC technologie</h2>
+                        <h2>Moderní technologie</h2>
                         <p>Zvládáme i ty nejnáročnější zakázky.</p>
                     </div>
                 </div>
                 <div class="slide slide3">
                     <div class="slide-content">
                         <h2>Profesionální tým</h2>
-                        <p>Dlouholeté zkušenosti v kovoobrábění.</p>
+                        <p>Dlouholeté zkušenosti v kovovýrobě.</p>
                     </div>
                 </div>
             </div>
@@ -328,9 +330,9 @@
         <section id="o-nas" class="section-about">
             <h2 class="section-title">O nás</h2>
             <p class="about-text">
-                Strojírenská firma TKAP je stabilním partnerem v oblasti zakázkového kovoobrábění a zámečnické výroby. 
+                Strojírenská firma KOVOKAP je stabilním partnerem v oblasti zakázkové zámečnické výroby a kovoobrábění. 
                 Disponujeme moderním strojním parkem a týmem zkušených profesionálů. Naším cílem je dodávat 
-                vysoce precizní komponenty přesně podle specifikací našich zákazníků, s důrazem na rychlost a kvalitu provedení.
+                vysoce precizní komponenty přesně podle specifikací našich zákazníků, s důrazem na kvalitu provedení.
             </p>
         </section>
 
@@ -354,7 +356,7 @@
                         <div class="tile-image img-kovovyroba"></div>
                         <div class="tile-content">
                             <h3>Zakázková kovovýroba</h3>
-                            <p>Kompletní zámečnické práce, výroba ocelových konstrukcí, regálových systémů a dílů dle vaší výkresové dokumentace.</p>
+                            <p>Kompletní zámečnické práce, návrh a výroba ocelových konstrukcí, schodišť, zábradlí a dílů dle vaší výkresové dokumentace.</p>
                             <span class="tile-link">Více informací &rarr;</span>
                         </div>
                     </a>
@@ -384,7 +386,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 TKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:info@tkap.cz">info@tkap.cz</a></p>
+        <p>&copy; 2026 KOVOKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:roman.kapera@seznam.cz">roman.kapera@seznam.cz</a></p>
     </footer>
 
 </body>
