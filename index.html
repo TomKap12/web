@@ -286,11 +286,12 @@
             .navbar {
                 flex-direction: row; 
                 align-items: center;
-                justify-content: space-between; /* Zajistí, že logo a čárky jsou na opačných koncích displeje */
+                justify-content: flex-start; /* Změna: zrušili jsme roztahování */
                 width: 100%;
             }
             .hamburger {
                 display: flex;
+                margin-left: auto; /* Změna: tohle natlačí ikonku nekompromisně k pravému okraji */
             }
             .nav-menu {
                 display: none;
@@ -472,7 +473,7 @@
 
 
 
-    
+
     <!-- JavaScript pro fungování menu a skrývání hlavičky -->
     <script>
         const hamburger = document.getElementById('hamburger');

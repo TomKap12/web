@@ -32,6 +32,13 @@
             width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            /* Plynulá animace pro schovávání lišty */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Třída, která hlavičku posune mimo obrazovku */
+        header.header-hidden {
+            transform: translateY(-100%);
         }
 
         .navbar {
@@ -41,6 +48,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
+            width: 100%;
         }
 
         .logo img {
@@ -49,6 +57,22 @@
             display: block;
         }
 
+        /* --- HAMBURGER MENU (na počítači skryto) --- */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
 
         .nav-menu {
             display: flex;
@@ -269,37 +293,61 @@
         /* --- RESPONSIVITA (PRO MOBILY) --- */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                gap: 15px;
+                flex-direction: row; 
+                align-items: center;
+                justify-content: flex-start; /* Změna: zrušili jsme roztahování */
+                width: 100%;
+            }
+            .hamburger {
+                display: flex;
+                margin-left: auto; /* Změna: tohle natlačí ikonku nekompromisně k pravému okraji */
             }
             .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: #1e2229;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+            .nav-menu.active {
+                display: flex;
             }
             .nav-menu li {
-                margin: 5px 10px;
+                margin: 15px 0;
             }
-            main {
-                padding-top: 150px;
+            .slider-container {
+                height: 350px;
             }
-            .company-details-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .slide-content h2 {
+                font-size: 20pt;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="main-header">
         <div class="navbar">
             <div class="logo">
-            <a href="index.html">
-                 <img src="IMG/logo.svg" alt="TKAP Logo">
-             </a>
-        </div>
+                <a href="index.html">
+                    <img src="IMG/logo.svg" alt="TKAP Logo">
+                </a>
+            </div>
+            
+            <!-- Tři čárky (Hamburger ikona) -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <nav>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="index.html">Domů</a></li>
                     <li><a href="index.html#o-nas">O nás</a></li>
                     <li><a href="index.html#sluzby">Služby</a></li>
@@ -373,13 +421,49 @@
 
         </div>
 
-        
-
     </main>
 
     <footer>
         <p>&copy; 2026 KOVOKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:roman.kapera@seznam.cz">roman.kapera@seznam.cz</a></p>
     </footer>
+
+    <!-- JavaScript pro fungování menu a skrývání hlavičky -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const header = document.getElementById('main-header');
+        let lastScrollY = window.scrollY;
+
+        // Otevření / zavření menu po kliknutí na 3 čárky
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Automatické zavření menu po kliknutí na jakýkoliv odkaz uvnitř
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Skrývání hlavičky při rolování dolů a zobrazení při rolování nahoru
+        window.addEventListener('scroll', () => {
+            // Pokud je menu zrovna otevřené, hlavičku neskrýváme
+            if (navMenu.classList.contains('active')) {
+                lastScrollY = window.scrollY;
+                return;
+            }
+
+            if (window.scrollY > lastScrollY && window.scrollY > 80) {
+                // Rolujeme dolů -> schovat lištu
+                header.classList.add('header-hidden');
+            } else {
+                // Rolujeme nahoru -> ukázat lištu
+                header.classList.remove('header-hidden');
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
 
 </body>
 </html>
