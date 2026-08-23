@@ -6,7 +6,7 @@
     <meta name="description" content="Galerie prací strojírenské firmy TKAP.">
     <title>Galerie | TKAP</title>
     <style>
-        /* --- ZÁKLADNÍ RESET A TYPOGRAFIE (stejné jako na hlavní straně) --- */
+        /* --- ZÁKLADNÍ RESET A TYPOGRAFIE --- */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +24,7 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Zaručí, že patička bude vždy dole */
+            min-height: 100vh;
         }
 
         /* --- HLAVIČKA A NAVIGAČNÍ LIŠTA --- */
@@ -36,11 +36,9 @@
             width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            /* Plynulá animace pro schovávání lišty */
             transition: transform 0.3s ease-in-out;
         }
 
-        /* Třída, která hlavičku posune mimo obrazovku */
         header.header-hidden {
             transform: translateY(-100%);
         }
@@ -61,7 +59,7 @@
             display: block;
         }
 
-        /* --- HAMBURGER MENU (na počítači skryto) --- */
+        /* --- HAMBURGER MENU --- */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -100,10 +98,10 @@
             color: #007bff;
         }
 
-        /* --- SEKCE: GALERIE (Nový obsah) --- */
+        /* --- SEKCE: GALERIE --- */
         main {
-            flex: 1; /* Aby obsah vyplnil zbytek stránky k patičce */
-            padding-top: 100px; /* Odsazení kvůli fixní horní liště */
+            flex: 1; 
+            padding-top: 100px; 
             padding-bottom: 60px;
         }
 
@@ -168,6 +166,55 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
+        /* --- NOVÉ: LIGHTBOX (ZVĚTŠENÍ OBRÁZKU) --- */
+        .lightbox {
+            display: none; /* Skryto, dokud na obrázek neklikneme */
+            position: fixed;
+            z-index: 2000; /* Musí být nad hlavičkou (která má 1000) */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Tmavé poloprůhledné pozadí */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Třída, která se přidá přes JS a zobrazí lightbox */
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            /* Animace mírného zvětšení při zobrazení */
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            color: #007bff;
+        }
+
         /* --- PATIČKA --- */
         footer {
             background-color: #1e2229;
@@ -191,12 +238,12 @@
             .navbar {
                 flex-direction: row; 
                 align-items: center;
-                justify-content: flex-start; /* Změna: zrušili jsme roztahování */
+                justify-content: flex-start;
                 width: 100%;
             }
             .hamburger {
                 display: flex;
-                margin-left: auto; /* Změna: tohle natlačí ikonku nekompromisně k pravému okraji */
+                margin-left: auto;
             }
             .nav-menu {
                 display: none;
@@ -216,11 +263,9 @@
             .nav-menu li {
                 margin: 15px 0;
             }
-            .slider-container {
-                height: 350px;
-            }
-            .slide-content h2 {
-                font-size: 20pt;
+            .lightbox-close {
+                top: 10px;
+                right: 20px;
             }
         }
     </style>
@@ -235,7 +280,6 @@
                 </a>
             </div>
             
-            <!-- Tři čárky (Hamburger ikona) -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -295,9 +339,15 @@
         </section>
     </main>
 
-     <footer>
+    <footer>
         <p>&copy; 2026 KOVOKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:roman.kapera@seznam.cz">roman.kapera@seznam.cz</a></p>
     </footer>
+
+    <!-- NOVÉ: Skrytý element pro Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span id="lightbox-close" class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Zvětšený obrázek">
+    </div>
 
     <!-- JavaScript pro fungování menu a skrývání hlavičky -->
     <script>
@@ -318,22 +368,54 @@
             });
         });
 
-        // Skrývání hlavičky při rolování dolů a zobrazení při rolování nahoru
+        // Skrývání hlavičky při rolování
         window.addEventListener('scroll', () => {
-            // Pokud je menu zrovna otevřené, hlavičku neskrýváme
             if (navMenu.classList.contains('active')) {
                 lastScrollY = window.scrollY;
                 return;
             }
 
             if (window.scrollY > lastScrollY && window.scrollY > 80) {
-                // Rolujeme dolů -> schovat lištu
                 header.classList.add('header-hidden');
             } else {
-                // Rolujeme nahoru -> ukázat lištu
                 header.classList.remove('header-hidden');
             }
             lastScrollY = window.scrollY;
+        });
+
+        // --- NOVÉ: JavaScript pro Lightbox ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const galleryImages = document.querySelectorAll('.gallery-img');
+
+        // Kliknutí na jakýkoliv obrázek v galerii
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                // Překopírujeme adresu nakliknutého obrázku do lightboxu
+                lightboxImg.src = img.src;
+                // Zobrazíme lightbox
+                lightbox.classList.add('active');
+            });
+        });
+
+        // Zavření pomocí křížku
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        // Zavření kliknutím kamkoliv do černého pozadí (mimo samotný obrázek)
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+        
+        // Zlepšovák: Zavření lightboxu pomocí klávesy ESC na klávesnici
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+            }
         });
     </script>
 
