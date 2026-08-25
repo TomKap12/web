@@ -3,516 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TKAP - Precizní strojírenská výroba, CNC obrábění a kovoobrábění.">
-    <title>KOVOKAP | Strojírenská firma</title>
+    <title>tkap.cz - Připravujeme</title>
     <style>
-        /* --- ZÁKLADNÍ RESET A TYPOGRAFIE --- */
-        * {
+        /* Základní nastavení stránky */
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
-            line-height: 1.6;
-        }
-
-        /* --- HLAVIČKA A NAVIGAČNÍ LIŠTA --- */
-        header {
-            background-color: #1e2229;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            /* Plynulá animace pro schovávání lišty */
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Třída, která hlavičku posune mimo obrazovku */
-        header.header-hidden {
-            transform: translateY(-100%);
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            width: 100%;
-        }
-
-        .logo img {
-            height: 60px;
-            width: auto;
-            display: block;
-        }
-
-        /* --- HAMBURGER MENU (na počítači skryto) --- */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background-color: #ffffff;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-menu li {
-            margin-left: 25px;
-        }
-
-        .nav-menu a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 11pt;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .nav-menu a:hover {
-            color: #007bff;
-        }
-
-        /* --- PREZENTACE / SLIDER --- */
-        .slider-container {
-            margin-top: 80px;
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        .slider {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            animation: cyclePhotos 15s infinite;
-        }
-
-        .slide {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .slide1 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/IMG/precizni.jpg'); }
-        .slide2 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/IMG/modernitechnologie.jpg'); }
-        .slide3 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/IMG/zkusenosti.jpg'); }
-
-        .slide-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-        }
-
-        .slide-content h2 {
-            font-size: 32pt;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .slide-content p {
-            font-size: 14pt;
-        }
-
-        @keyframes cyclePhotos {
-            0% { transform: translateX(0%); }
-            28% { transform: translateX(0%); }
-            33% { transform: translateX(-33.33%); }
-            61% { transform: translateX(-33.33%); }
-            66% { transform: translateX(-66.66%); }
-            95% { transform: translateX(-66.66%); }
-            100% { transform: translateX(0%); }
-        }
-
-        /* --- SEKTOR: O NÁS --- */
-        .section-about {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
         }
 
-        .section-title {
-            font-size: 24pt;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-            text-transform: uppercase;
+        /* Obal pro obsah */
+        .container {
+            background: white;
+            padding: 50px 70px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: #007bff;
+        /* Nadpisy a texty */
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            letter-spacing: 2px;
         }
 
-        .about-text {
-            font-size: 12pt;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto;
+        .domain {
+            color: #3498db;
         }
 
-        /* --- SEKCE: SLUŽBY --- */
-        .section-services {
-            background-color: #ebedf0;
-            padding: 60px 20px;
-        }
-
-        .services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-tile {
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .service-tile:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-        }
-
-        .tile-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .img-brany { background-image: url('/IMG/brana.jpg'); }
-        .img-kovovyroba { background-image: url('/IMG/kovovyroba.jpg'); }
-        .img-laser { background-image: url('/IMG/laser.jpg'); }
-        .img-3dtisk { background-image: url('/IMG/3DTISK.jpg'); }
-
-        .tile-content {
-            padding: 25px;
-            text-align: left;
-        }
-
-        .tile-content h3 {
-            font-size: 14pt;
-            margin-bottom: 10px;
-            color: #1e2229;
-        }
-
-        .tile-content p {
-            font-size: 10pt;
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 0 0 10px 0;
             color: #666;
-            margin-bottom: 15px;
-            height: 60px;
-            overflow: hidden;
         }
 
-        .tile-link {
-            color: #007bff;
-            font-weight: bold;
-            font-size: 10pt;
-            text-transform: uppercase;
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
-        /* --- PATIČKA --- */
-        footer {
-            background-color: #1e2229;
-            color: #aaa;
-            text-align: center;
-            padding: 20px;
-            font-size: 10pt;
-        }
-        
-        footer a {
-            color: #aaa;
-            text-decoration: none;
-        }
-        
-        footer a:hover {
-            color: #ffffff;
-        }
-
-        /* --- RESPONSIVITA (PRO MOBILY) --- */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: row; 
-                align-items: center;
-                justify-content: flex-start; /* Změna: zrušili jsme roztahování */
-                width: 100%;
+        /* Responzivita pro menší obrazovky */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
             }
-            .hamburger {
-                display: flex;
-                margin-left: auto; /* Změna: tohle natlačí ikonku nekompromisně k pravému okraji */
+            h1 {
+                font-size: 2rem;
             }
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 90px;
-                left: 0;
-                width: 100%;
-                background-color: #1e2229;
-                text-align: center;
-                padding: 20px 0;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            }
-            .nav-menu.active {
-                display: flex;
-            }
-            .nav-menu li {
-                margin: 15px 0;
-            }
-            .slider-container {
-                height: 350px;
-            }
-            .slide-content h2 {
-                font-size: 20pt;
+            p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <header id="main-header">
-        <div class="navbar">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="IMG/logo.svg" alt="TKAP Logo">
-                </a>
-            </div>
-            
-            <!-- Tři čárky (Hamburger ikona) -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <nav>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#domu">Domů</a></li>
-                    <li><a href="#o-nas">O nás</a></li>
-                    <li><a href="#sluzby">Služby</a></li>
-                    <li><a href="galerie.html">Galerie</a></li>
-                    <li><a href="kontakty.html">Kontakty</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main id="domu">
-
-        <div class="slider-container">
-            <div class="slider">
-                <div class="slide slide1">
-                    <div class="slide-content">
-                        <h2>Precizní výroba</h2>
-                        <p>Kvalita a přesnost na prvním místě.</p>
-                    </div>
-                </div>
-                <div class="slide slide2">
-                    <div class="slide-content">
-                        <h2>Moderní technologie</h2>
-                        <p>Zvládáme i náročné zakázky.</p>
-                    </div>
-                </div>
-                <div class="slide slide3">
-                    <div class="slide-content">
-                        <h2>30 let zkušeností</h2>
-                        <p>Odbornost prověřená časem.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section id="o-nas" class="section-about">
-            <h2 class="section-title">O nás</h2>
-            <p class="about-text">
-                Strojírenská firma KOVOKAP je stabilním partnerem v oblasti zakázkové zámečnické výroby a kovoobrábění. 
-                Disponujeme moderním strojním parkem a týmem zkušených profesionálů. Naším cílem je dodávat 
-                vysoce precizní komponenty přesně podle specifikací našich zákazníků, s důrazem na kvalitu provedení.
-            </p>
-        </section>
-
-        <section id="sluzby" class="section-services">
-            <div class="services-container">
-                <h2 class="section-title">Naše Služby</h2>
-                
-                <div class="services-grid">
-                    
-                   <!-- Dlaždice 1: Brány, ploty a exteriér -->
-                    
-                    <a href="#kontakt" class="service-tile">
-                        <div class="tile-image img-kovovyroba"></div>
-                        <div class="tile-content">
-                            <h3>Zakázková kovovýroba</h3>
-                            <p>Kompletní zámečnické práce, návrh a výroba ocelových konstrukcí, schodišť, zábradlí a dílů dle vaší výkresové dokumentace.</p>
-                            <span class="tile-link">Více informací &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a href="#kontakt" class="service-tile">
-                        <div class="tile-image img-laser"></div>
-                        <div class="tile-content">
-                            <h3>Laserové svařování a čištění</h3>
-                            <p>Špičková technologie pro vysoce pevné, přesné a esteticky dokonalé spoje bez deformace materiálu. Také možno pomocí laseru odstraňovat rez.</p>
-                            <span class="tile-link">Více informací &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a href="brany.html" class="service-tile">
-                         <div class="tile-image img-brany"></div>
-                            <div class="tile-content">
-                                <h3>Brány, ploty a exteriér</h3>
-                                <p>Návrh a výroba samonosných i křídlových bran, plotových dílců a moderních exteriérových prvků na zakázku.</p>
-                         <span class="tile-link">Více informací &rarr;</span>
-                            </div>
-                        </a>
-
-
-                    <a href="3dtisk.html" class="service-tile">
-                        <div class="tile-image img-3dtisk"></div>
-                        <div class="tile-content">
-                            <h3>3D tisk a prototypování</h3>
-                            <p>Rychlá výroba prototypů, funkčních modelů a přípravků z moderních polymerů pro testování i finální nasazení.</p>
-                            <span class="tile-link">Více informací &rarr;</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2026 KOVOKAP. Všechna práva vyhrazena. | E-mail pro poptávky: <a href="mailto:roman.kapera@seznam.cz">roman.kapera@seznam.cz</a></p>
-    </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- JavaScript pro fungování menu a skrývání hlavičky -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        const header = document.getElementById('main-header');
-        let lastScrollY = window.scrollY;
-
-        // Otevření / zavření menu po kliknutí na 3 čárky
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Automatické zavření menu po kliknutí na jakýkoliv odkaz uvnitř
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Skrývání hlavičky při rolování dolů a zobrazení při rolování nahoru
-        window.addEventListener('scroll', () => {
-            // Pokud je menu zrovna otevřené, hlavičku neskrýváme
-            if (navMenu.classList.contains('active')) {
-                lastScrollY = window.scrollY;
-                return;
-            }
-
-            if (window.scrollY > lastScrollY && window.scrollY > 80) {
-                // Rolujeme dolů -> schovat lištu
-                header.classList.add('header-hidden');
-            } else {
-                // Rolujeme nahoru -> ukázat lištu
-                header.classList.remove('header-hidden');
-            }
-            lastScrollY = window.scrollY;
-        });
-    </script>
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1><span class="domain">tkap.cz</span></h1>
+        <p>Na této doméně se aktuálně pracuje.</p>
+        <p>Do budoucna pro vás chystáme nový projekt. Zastavte se později!</p>
+    </div>
 
 </body>
 </html>
